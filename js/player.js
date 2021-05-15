@@ -11,7 +11,7 @@ class Player {
 
         this.width = this.self.getBoundingClientRect().width;
         this.height = this.self.getBoundingClientRect().height;
-
+        
         this.xPosition = screen.width / 2 - this.width / 2;
         this.self.style.left = this.xPosition + "px";
 
@@ -57,6 +57,7 @@ class Player {
             }
         
         })
+
 
         window.requestAnimationFrame(() => this.updateState() );
     }
@@ -145,7 +146,7 @@ class PlayerBullet {
 
     move() {
         if (!this.destroyed) {
-            if (this.self.getBoundingClientRect().bottom < gameScreen.getBoundingClientRect().top) {
+            if (this.self.getBoundingClientRect().bottom < screen.top) {
                 this.destroy();
                 return;
             }

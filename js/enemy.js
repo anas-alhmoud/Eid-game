@@ -8,11 +8,8 @@ class Attacker {
         this.self.setAttribute("class", "attacker");
 
         this.yPosition = 0;
-
         this.self.style.top = this.yPosition + "px";
-
         this.self.style.left = x + "px";
-
 
         this.destroyed = false;
 
@@ -21,7 +18,7 @@ class Attacker {
 
     move() {
         if (!this.destroyed) {
-            if (this.self.getBoundingClientRect().top > gameScreen.getBoundingClientRect().bottom) {
+            if (this.self.getBoundingClientRect().top > screen.bottom) {
                 this.remake();
                 return;
             }
@@ -65,6 +62,9 @@ class Boss {
 
         gameScreen.append(this.self)
 
+        this.width = this.self.getBoundingClientRect().width;
+        this.height = this.self.getBoundingClientRect().height;
+
         this.yPosition = 0;
         this.xPosition = x;
 
@@ -79,23 +79,18 @@ class Boss {
         this.yChangeRate = 3;
 
         this.shootDelay = 1000;
-
-
-        this.width = this.self.getBoundingClientRect().width;
-        this.height = this.self.getBoundingClientRect().height;
     }
 
     move() {
         if (!this.destroyed) {
 
-            if (this.xPosition + this.self.getBoundingClientRect().width > screen.width || this.xPosition < 0) {
+            if (this.xPosition + this.width  > screen.width || this.xPosition < 0) {
                 this.xChangeRate = this.xChangeRate * -1
             }
 
-            if (this.yPosition + this.self.getBoundingClientRect().height > screen.height || this.yPosition < 0) {
+            if (this.yPosition + this.height > screen.height || this.yPosition < 0) {
                 this.yChangeRate = this.yChangeRate * -1
             }
-
 
             this.moveX();
             this.moveY();
@@ -155,6 +150,11 @@ class BossBullet {
         this.self = document.createElement("div");
         this.self.setAttribute("class", "boss-bullet")
 
+        gameScreen.append(this.self);
+
+        this.width = this.self.getBoundingClientRect().width;
+        this.height = this.self.getBoundingClientRect().height;
+
         this.yPosition = y;
         this.xPosition = x;
 
@@ -171,7 +171,7 @@ class BossBullet {
 
     move() {
         if (!this.destroyed) {
-            if (this.self.getBoundingClientRect().top > gameScreen.getBoundingClientRect().bottom) {
+            if (this.self.getBoundingClientRect().top > screen.bottom) {
                 this.destroy();
                 return;
             }
