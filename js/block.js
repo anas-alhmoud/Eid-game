@@ -1,25 +1,14 @@
 class Block {
-    constructor(x, y, obList) {
-
-        this.obList = obList
+    constructor(x, y) {
 
         this.self = document.createElement("div");
         this.self.setAttribute("class", "block");
 
-        this.yPosition = y;
-        this.xPosition = x;
-
-        this.self.style.top = this.yPosition + "px";
-
-        this.self.style.left = this.xPosition + "px";
-
+        this.self.style.top = y + "px";
+        this.self.style.left = x + "px";
 
         gameScreen.append(this.self);
-
-        this.width = this.self.getBoundingClientRect().width;
-        this.height = this.self.getBoundingClientRect().height;
     }
-
 
     bulletMoved(bullet) {
         bullet.destroy();

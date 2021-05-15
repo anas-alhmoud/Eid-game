@@ -48,7 +48,7 @@ class GameManager {
     }
 
     makeBlock(){
-        this.observerList.add(new Block(Math.random() * 920, Math.random() * (660 - 200) + 200, this.observerList))
+        this.observerList.add(new Block(Math.random() * 920, Math.random() * (660 - 200) + 200))
     }
 
     attackerKilled() {
